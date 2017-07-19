@@ -1,0 +1,446 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="letsshopModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="letsshopModelStoreContainer">
+          <EntitySet Name="category" EntityType="letsshopModel.Store.category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="customer_contact" EntityType="letsshopModel.Store.customer_contact" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="orders" EntityType="letsshopModel.Store.orders" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="products" EntityType="letsshopModel.Store.products" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sub_category" EntityType="letsshopModel.Store.sub_category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="users" EntityType="letsshopModel.Store.users" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="views" EntityType="letsshopModel.Store.views" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_orders_products" Association="letsshopModel.Store.FK_orders_products">
+            <End Role="products" EntitySet="products" />
+            <End Role="orders" EntitySet="orders" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="category_name" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="created_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customer_contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Firstname" Type="varchar" Nullable="false" MaxLength="11" />
+          <Property Name="Lastname" Type="varchar" Nullable="false" MaxLength="11" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Subject" Type="varchar" Nullable="false" MaxLength="11" />
+          <Property Name="Message" Type="text" Nullable="false" />
+          <Property Name="Created_Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="customer_name" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="total_amount" Type="int" Nullable="false" />
+          <Property Name="order_date" Type="datetime" Nullable="false" />
+          <Property Name="status" Type="varchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="description" Type="text" Nullable="false" />
+          <Property Name="subcat_name" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="img_loc" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="created_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sub_category">
+          <Key>
+            <PropertyRef Name="subcat_id" />
+          </Key>
+          <Property Name="subcat_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="subcat_name" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="created_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Contact_Number" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Gender" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Address" Type="text" Nullable="false" />
+          <Property Name="Date_of_birth" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Username" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="user_type" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Created_Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="views">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Product_Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Product_id" Type="int" />
+          <Property Name="Hits" Type="int" />
+        </EntityType>
+        <Association Name="FK_orders_products">
+          <End Role="products" Type="letsshopModel.Store.products" Multiplicity="1" />
+          <End Role="orders" Type="letsshopModel.Store.orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="orders">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="spAddOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="product_id" Type="int" Mode="In" />
+          <Parameter Name="customer_name" Type="varchar" Mode="In" />
+          <Parameter Name="quantity" Type="int" Mode="In" />
+          <Parameter Name="total_amount" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spADDProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="quantity" Type="int" Mode="In" />
+          <Parameter Name="price" Type="int" Mode="In" />
+          <Parameter Name="description" Type="text" Mode="In" />
+          <Parameter Name="subcat_name" Type="varchar" Mode="In" />
+          <Parameter Name="img_loc" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spApprove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spDeleteuser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="splogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spOrderemove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spremoveProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sptotal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Name" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Contact_Number" Type="varchar" Mode="In" />
+          <Parameter Name="Gender" Type="varchar" Mode="In" />
+          <Parameter Name="Address" Type="text" Mode="In" />
+          <Parameter Name="Date_of_birth" Type="varchar" Mode="In" />
+          <Parameter Name="Username" Type="varchar" Mode="In" />
+          <Parameter Name="Password" Type="varchar" Mode="In" />
+          <Parameter Name="user_type" Type="varchar" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="letsshopModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="letsshopEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="categories" EntityType="letsshopModel.category" />
+          <EntitySet Name="customer_contact" EntityType="letsshopModel.customer_contact" />
+          <EntitySet Name="orders" EntityType="letsshopModel.order" />
+          <EntitySet Name="products" EntityType="letsshopModel.product" />
+          <EntitySet Name="sub_category" EntityType="letsshopModel.sub_category" />
+          <EntitySet Name="users" EntityType="letsshopModel.user" />
+          <FunctionImport Name="spUsers">
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Contact_Number" Mode="In" Type="String" />
+            <Parameter Name="Gender" Mode="In" Type="String" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="Date_of_birth" Mode="In" Type="String" />
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="user_type" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="splogin" ReturnType="Collection(Int32)">
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
+          <AssociationSet Name="FK_orders_products" Association="letsshopModel.FK_orders_products">
+            <End Role="product" EntitySet="products" />
+            <End Role="order" EntitySet="orders" />
+          </AssociationSet>
+          <FunctionImport Name="spADDProduct">
+            <Parameter Name="quantity" Mode="In" Type="Int32" />
+            <Parameter Name="price" Mode="In" Type="Int32" />
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="subcat_name" Mode="In" Type="String" />
+            <Parameter Name="img_loc" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spAddOrder">
+            <Parameter Name="product_id" Mode="In" Type="Int32" />
+            <Parameter Name="customer_name" Mode="In" Type="String" />
+            <Parameter Name="quantity" Mode="In" Type="Int32" />
+            <Parameter Name="total_amount" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="views" EntityType="letsshopModel.view" />
+          <FunctionImport Name="sptotal" ReturnType="Collection(letsshopModel.sptotal_Result)" />
+          <FunctionImport Name="spApprove">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spDeleteuser">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spOrderemove">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spremoveProducts">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="category_id" />
+          </Key>
+          <Property Name="category_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category_name" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="created_date" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customer_contact">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Firstname" Type="String" Nullable="false" MaxLength="11" Unicode="false" FixedLength="false" />
+          <Property Name="Lastname" Type="String" Nullable="false" MaxLength="11" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="11" Unicode="false" FixedLength="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Created_Date" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="customer_name" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="total_amount" Type="Int32" Nullable="false" />
+          <Property Name="order_date" Type="DateTime" Nullable="false" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="product" Relationship="letsshopModel.FK_orders_products" FromRole="order" ToRole="product" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="subcat_name" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="img_loc" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="created_date" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="orders" Relationship="letsshopModel.FK_orders_products" FromRole="product" ToRole="order" />
+        </EntityType>
+        <EntityType Name="sub_category">
+          <Key>
+            <PropertyRef Name="subcat_id" />
+          </Key>
+          <Property Name="subcat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="subcat_name" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="created_date" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Contact_Number" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Date_of_birth" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="user_type" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+          <Property Name="Created_Date" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_orders_products">
+          <End Type="letsshopModel.product" Role="product" Multiplicity="1" />
+          <End Type="letsshopModel.order" Role="order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="view">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Product_Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Product_id" />
+          <Property Type="Int32" Name="Hits" />
+        </EntityType>
+        <ComplexType Name="sptotal_Result">
+          <Property Type="Int32" Name="Total" Nullable="true" />
+          <Property Type="String" Name="customer_name" Nullable="false" MaxLength="20" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="letsshopModelStoreContainer" CdmEntityContainer="letsshopEntities2">
+          <EntitySetMapping Name="categories">
+            <EntityTypeMapping TypeName="letsshopModel.category">
+              <MappingFragment StoreEntitySet="category">
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customer_contact">
+            <EntityTypeMapping TypeName="letsshopModel.customer_contact">
+              <MappingFragment StoreEntitySet="customer_contact">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="letsshopModel.order">
+              <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="total_amount" ColumnName="total_amount" />
+                <ScalarProperty Name="order_date" ColumnName="order_date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="letsshopModel.product">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="subcat_name" ColumnName="subcat_name" />
+                <ScalarProperty Name="img_loc" ColumnName="img_loc" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sub_category">
+            <EntityTypeMapping TypeName="letsshopModel.sub_category">
+              <MappingFragment StoreEntitySet="sub_category">
+                <ScalarProperty Name="subcat_id" ColumnName="subcat_id" />
+                <ScalarProperty Name="subcat_name" ColumnName="subcat_name" />
+                <ScalarProperty Name="created_date" ColumnName="created_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="letsshopModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Contact_Number" ColumnName="Contact_Number" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Date_of_birth" ColumnName="Date_of_birth" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="user_type" ColumnName="user_type" />
+                <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spUsers" FunctionName="letsshopModel.Store.spUsers" />
+          <FunctionImportMapping FunctionImportName="splogin" FunctionName="letsshopModel.Store.splogin" />
+          <FunctionImportMapping FunctionImportName="spADDProduct" FunctionName="letsshopModel.Store.spADDProduct" />
+          <FunctionImportMapping FunctionImportName="spAddOrder" FunctionName="letsshopModel.Store.spAddOrder" />
+          <EntitySetMapping Name="views">
+            <EntityTypeMapping TypeName="letsshopModel.view">
+              <MappingFragment StoreEntitySet="views">
+                <ScalarProperty Name="Hits" ColumnName="Hits" />
+                <ScalarProperty Name="Product_id" ColumnName="Product_id" />
+                <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sptotal" FunctionName="letsshopModel.Store.sptotal" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="letsshopModel.sptotal_Result">
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spApprove" FunctionName="letsshopModel.Store.spApprove" />
+          <FunctionImportMapping FunctionImportName="spDeleteuser" FunctionName="letsshopModel.Store.spDeleteuser" />
+          <FunctionImportMapping FunctionImportName="spOrderemove" FunctionName="letsshopModel.Store.spOrderemove" />
+          <FunctionImportMapping FunctionImportName="spremoveProducts" FunctionName="letsshopModel.Store.spremoveProducts" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="letsshopModel.category" Width="1.5" PointX="0.75" PointY="0.75" Height="1.59568359375" IsExpanded="true" />
+        <EntityTypeShape EntityType="letsshopModel.customer_contact" Width="1.5" PointX="2.75" PointY="0.75" Height="2.3648893229166665" IsExpanded="true" />
+        <EntityTypeShape EntityType="letsshopModel.order" Width="1.5" PointX="4.75" PointY="0.75" Height="2.3648893229166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="letsshopModel.product" Width="1.5" PointX="7.25" PointY="4.25" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="letsshopModel.sub_category" Width="1.5" PointX="0.5" PointY="3.5" Height="1.7879850260416665" IsExpanded="true" />
+        <EntityTypeShape EntityType="letsshopModel.user" Width="1.5" PointX="4" PointY="4.25" Height="3.1340950520833317" IsExpanded="true" />
+        <AssociationConnector Association="letsshopModel.FK_orders_products" >
+          <ConnectorPoint PointX="8" PointY="4.25" />
+          <ConnectorPoint PointX="8" PointY="2.0285953776041667" />
+          <ConnectorPoint PointX="6.25" PointY="2.0285953776041667" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="letsshopModel.view" Width="1.5" PointX="0.75" PointY="6.75" Height="1.7879850260416674" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

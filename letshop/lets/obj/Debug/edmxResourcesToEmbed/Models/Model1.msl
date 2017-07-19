@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="letsshopModelStoreContainer" CdmEntityContainer="letsshopEntities2">
+    <EntitySetMapping Name="categories">
+      <EntityTypeMapping TypeName="letsshopModel.category">
+        <MappingFragment StoreEntitySet="category">
+          <ScalarProperty Name="category_id" ColumnName="category_id" />
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="customer_contact">
+      <EntityTypeMapping TypeName="letsshopModel.customer_contact">
+        <MappingFragment StoreEntitySet="customer_contact">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Firstname" ColumnName="Firstname" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orders">
+      <EntityTypeMapping TypeName="letsshopModel.order">
+        <MappingFragment StoreEntitySet="orders">
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="total_amount" ColumnName="total_amount" />
+          <ScalarProperty Name="order_date" ColumnName="order_date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="letsshopModel.product">
+        <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="product_id" ColumnName="product_id" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="subcat_name" ColumnName="subcat_name" />
+          <ScalarProperty Name="img_loc" ColumnName="img_loc" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sub_category">
+      <EntityTypeMapping TypeName="letsshopModel.sub_category">
+        <MappingFragment StoreEntitySet="sub_category">
+          <ScalarProperty Name="subcat_id" ColumnName="subcat_id" />
+          <ScalarProperty Name="subcat_name" ColumnName="subcat_name" />
+          <ScalarProperty Name="created_date" ColumnName="created_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="letsshopModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Contact_Number" ColumnName="Contact_Number" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Date_of_birth" ColumnName="Date_of_birth" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="user_type" ColumnName="user_type" />
+          <ScalarProperty Name="Created_Date" ColumnName="Created_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spUsers" FunctionName="letsshopModel.Store.spUsers" />
+    <FunctionImportMapping FunctionImportName="splogin" FunctionName="letsshopModel.Store.splogin" />
+    <FunctionImportMapping FunctionImportName="spADDProduct" FunctionName="letsshopModel.Store.spADDProduct" />
+    <FunctionImportMapping FunctionImportName="spAddOrder" FunctionName="letsshopModel.Store.spAddOrder" />
+    <EntitySetMapping Name="views">
+      <EntityTypeMapping TypeName="letsshopModel.view">
+        <MappingFragment StoreEntitySet="views">
+          <ScalarProperty Name="Hits" ColumnName="Hits" />
+          <ScalarProperty Name="Product_id" ColumnName="Product_id" />
+          <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sptotal" FunctionName="letsshopModel.Store.sptotal">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="letsshopModel.sptotal_Result">
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spApprove" FunctionName="letsshopModel.Store.spApprove" />
+    <FunctionImportMapping FunctionImportName="spDeleteuser" FunctionName="letsshopModel.Store.spDeleteuser" />
+    <FunctionImportMapping FunctionImportName="spOrderemove" FunctionName="letsshopModel.Store.spOrderemove" />
+    <FunctionImportMapping FunctionImportName="spremoveProducts" FunctionName="letsshopModel.Store.spremoveProducts" />
+  </EntityContainerMapping>
+</Mapping>

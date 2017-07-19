@@ -1,0 +1,353 @@
+﻿@{
+    ViewBag.Title = "orderlist";
+}
+
+@{
+    ViewBag.Title = "registereduser";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Obaju e-commerce template">
+    <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
+    <meta name="keywords" content="">
+    <title>Obaju : e-commerce template </title>
+    <meta name="keywords" content="">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet'
+        type='text/css'>
+    <link href="../../Content/css/animate.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/owl.carousel.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/owl.theme.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/owl.transitions.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/style.blue.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/style.default.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/style.green.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/style.mono.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/style.pink.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/style.violet.css" rel="stylesheet" type="text/css" />
+    <script src="../../Script/bootstrap-hover-dropdown.js" type="text/javascript"></script>
+    <script src="../../Script/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../../Script/front.js" type="text/javascript"></script>
+    <script src="../../Script/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="../../Script/jquery.cookie.js" type="text/javascript"></script>
+    <script src="../../Script/jquery.flexslider.js" type="text/javascript"></script>
+    <script src="../../Script/jquery.flexslider.min.js" type="text/javascript"></script>
+    <script src="../../Script/main.js" type="text/javascript"></script>
+    <script src="../../Script/modernizr.js" type="text/javascript"></script>
+    <script src="../../Script/owl.carousel.min.js" type="text/javascript"></script>
+    <script src="../../Script/respond.min.js" type="text/javascript"></script>
+    <script src="../../Script/waypoints.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <!-- *** TOPBAR ***
+ _________________________________________________________ -->
+     <div id="top">
+        <div class="container">
+            <div class="col-md-6 offer" data-animate="fadeInDown">
+                
+            </div>
+            <div class="col-md-6" data-animate="fadeInDown">
+                <ul class="menu">
+                    @if (Session["username"] != null)
+                    {
+                        <li><a href="">Hi,Welcome Back</a> </li>
+                    }
+                    else
+                    {
+                        <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a> </li> }
+              
+                </ul>
+            </div>
+        </div>
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login"
+            aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;</button>
+                        <h4 class="modal-title" id="Login">
+                            Customer login</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="customer-orders.html" method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="email-modal" placeholder="email">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="password-modal" placeholder="password">
+                        </div>
+                        <p class="text-center">
+                            <button class="btn btn-primary">
+                                <i class="fa fa-sign-in"></i>Log in</button>
+                        </p>
+                        </form>
+                        <p class="text-center text-muted">
+                            Not registered yet?</p>
+                        <p class="text-center text-muted">
+                            <a href="register.html"><strong>Register now</strong></a>! It is easy and done in
+                            1&nbsp;minute and gives you access to special discounts and much more!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <div id="all">
+        <div id="content">
+            <div class="container">
+                <div class="col-md-12">
+                    <ul class="breadcrumb">
+                        <li class="active"><a href="/Home/admin">Home</a> </li>
+                       
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <!-- *** PAGES MENU ***
+ _________________________________________________________ -->
+                    <div class="panel panel-default sidebar-menu">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                Pages</h3>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="nav nav-pills nav-stacked">
+                             <li><a href="/Admin/dashboard"><i class="fa fa-list"></i>Dashboard</a> </li>
+                               
+                                 <li><a href="/Admin/orderlist"><i class="fa fa-list"></i>Orders</a> </li>
+                                  <li><a href="/Admin/registereduser"><i class="fa fa-list"></i>Registered Users</a> </li>
+                                  <li><a href="/Admin/Productlist"><i class="fa fa-list"></i>Products</a> </li>
+                                    <li><a href=""><i class="fa fa-list"></i>Stockhouse</a> </li>
+                                      <li><a href="/Home/logout"><i class="fa fa-sign-out"></i>Logout</a> </li>
+
+                               
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- *** PAGES MENU END *** -->
+                    <div class="banner">
+                        <a href="#">
+                            
+                        </a>
+                    </div>
+                </div>
+                 <div class="col-md-9" id="customer-orders">
+                    <div class="box">
+                       
+
+                        <div class="table-responsive">
+                       
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Order Id</th>
+                                        <th>Product Id</th>
+                                        <th>Customer Name</th>
+                                        <th>Quantity</th>
+                                        <th>Amount</th>
+                                        <th>Order Date</th>
+                                        <th>Status</th>
+                                    
+                                        <th>Edit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 @foreach (var item in ViewBag.orderlist)
+                        {
+                                    <tr>
+                                        <th>@item.order_id</th>
+                                        <td>@item.product_id</td>
+                                        <td>@item.customer_name</td>
+                                         <td>@item.quantity</td>
+                                          <td>@item.total_amount</td>
+                                           <td>@item.order_date</td>
+                                            <td><span class="label label-info">@item.status</td>
+                                        
+                                       
+                                       <td> @Html.ActionLink("Approve", "approve", "Admin", new { id = @item.order_id }, new { @style = "color:red" })
+                                            </td>
+                                            <td> @Html.ActionLink("Remove", "deleteorder","Admin", new { id =@item.order_id}, new { @class = "fa fa-trash-o",onclick = "return confirm('Are you sure you wish to delete this ?');"  })
+                                            </td>
+                                    </tr>
+                                   
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /#content -->
+
+
+        <!-- *** FOOTER ***
+ _________________________________________________________ -->
+    <div id="footer" data-animate="fadeInUp">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <h4>
+                        Pages</h4>
+                    <ul>
+                        <li><a href="text.html">About us</a> </li>
+                        <li><a href="text.html">Terms and conditions</a> </li>
+                        <li><a href="faq.html">FAQ</a> </li>
+                        <li><a href="contact.html">Contact us</a> </li>
+                    </ul>
+                    <hr>
+                    <h4>
+                        User section</h4>
+                    <ul>
+                        <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a> </li>
+                        <li><a href="register.html">Regiter</a> </li>
+                    </ul>
+                    <hr class="hidden-md hidden-lg hidden-sm">
+                </div>
+                <!-- /.col-md-3 -->
+                <div class="col-md-3 col-sm-6">
+                    <h4>
+                        Top categories</h4>
+                    <h5>
+                        Men</h5>
+                    <ul>
+                        <li><a href="category.html">T-shirts</a> </li>
+                        <li><a href="category.html">Shirts</a> </li>
+                        <li><a href="category.html">Accessories</a> </li>
+                    </ul>
+                    <h5>
+                        Ladies</h5>
+                    <ul>
+                        <li><a href="category.html">T-shirts</a> </li>
+                        <li><a href="category.html">Skirts</a> </li>
+                        <li><a href="category.html">Pants</a> </li>
+                        <li><a href="category.html">Accessories</a> </li>
+                    </ul>
+                    <hr class="hidden-md hidden-lg">
+                </div>
+                <!-- /.col-md-3 -->
+                <div class="col-md-3 col-sm-6">
+                    <h4>
+                        Where to find us</h4>
+                    <p>
+                        <strong>Obaju Ltd.</strong>
+                        <br>
+                        13/25 New Avenue
+                        <br>
+                        New Heaven
+                        <br>
+                        45Y 73J
+                        <br>
+                        England
+                        <br>
+                        <strong>Great Britain</strong>
+                    </p>
+                    <a href="contact.html">Go to contact page</a>
+                    <hr class="hidden-md hidden-lg">
+                </div>
+                <!-- /.col-md-3 -->
+                <div class="col-md-3 col-sm-6">
+                    <h4>
+                        Get the news</h4>
+                    <p class="text-muted">
+                        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
+                        egestas.</p>
+                    <form>
+                    <div class="input-group">
+                        <input type="text" class="form-control">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                Subscribe!</button>
+                        </span>
+                    </div>
+                    <!-- /input-group -->
+                    </form>
+                    <hr>
+                    <h4>
+                        Stay in touch</h4>
+                    <p class="social">
+                        <a href="#" class="facebook external" data-animate-hover="shake"><i class="fa fa-facebook">
+                        </i></a><a href="#" class="twitter external" data-animate-hover="shake"><i class="fa fa-twitter">
+                        </i></a><a href="#" class="instagram external" data-animate-hover="shake"><i class="fa fa-instagram">
+                        </i></a><a href="#" class="gplus external" data-animate-hover="shake"><i class="fa fa-google-plus">
+                        </i></a><a href="#" class="email external" data-animate-hover="shake"><i class="fa fa-envelope">
+                        </i></a>
+                    </p>
+                </div>
+                <!-- /.col-md-3 -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#footer -->
+    <!-- *** FOOTER END *** -->
+    <!-- *** COPYRIGHT ***
+ _________________________________________________________ -->
+    <div id="copyright">
+        <div class="container">
+            <div class="col-md-6">
+                <p class="pull-left">
+                    © 2015 Your name goes here.</p>
+            </div>
+            <div class="col-md-6">
+                <p class="pull-right">
+                    Template by <a href="https://bootstrapious.com/e-commerce-templates">Bootstrapious.com</a>
+                    <!-- Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  -->
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- *** COPYRIGHT END *** -->
+    </div>
+    <!-- /#all -->
+    <!-- *** SCRIPTS TO INCLUDE ***
+ _________________________________________________________ -->
+    <script src="../../Script/bootstrap-hover-dropdown.js" type="text/javascript"></script>
+    <script src="../../Script/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../../Script/front.js" type="text/javascript"></script>
+    <script src="../../Script/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="../../Script/jquery.cookie.js" type="text/javascript"></script>
+    <script src="../../Script/jquery.flexslider.js" type="text/javascript"></script>
+    <script src="../../Script/jquery.flexslider.min.js" type="text/javascript"></script>
+    <script src="../../Script/main.js" type="text/javascript"></script>
+    <script src="../../Script/modernizr.js" type="text/javascript"></script>
+    <script src="../../Script/owl.carousel.min.js" type="text/javascript"></script>
+    <script src="../../Script/respond.min.js" type="text/javascript"></script>
+    <script src="../../Script/waypoints.min.js" type="text/javascript"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false"></script>
+    <script>
+        function initialize() {
+            var mapOptions = {
+                zoom: 15,
+                center: new google.maps.LatLng(49.1678136, 16.5671893),
+                mapTypeId: google.maps.MapTypeId.ROAD,
+                scrollwheel: false
+            }
+            var map = new google.maps.Map(document.getElementById('map'),
+                mapOptions);
+
+            var myLatLng = new google.maps.LatLng(49.1681989, 16.5650808);
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map
+            });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</body>
+</html>
+
+

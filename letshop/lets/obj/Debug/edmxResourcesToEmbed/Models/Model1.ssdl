@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="letsshopModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="letsshopModelStoreContainer">
+    <EntitySet Name="category" EntityType="letsshopModel.Store.category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="customer_contact" EntityType="letsshopModel.Store.customer_contact" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="orders" EntityType="letsshopModel.Store.orders" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="products" EntityType="letsshopModel.Store.products" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sub_category" EntityType="letsshopModel.Store.sub_category" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="users" EntityType="letsshopModel.Store.users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="views" EntityType="letsshopModel.Store.views" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_orders_products" Association="letsshopModel.Store.FK_orders_products">
+      <End Role="products" EntitySet="products" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="category_name" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="created_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="customer_contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Firstname" Type="varchar" Nullable="false" MaxLength="11" />
+    <Property Name="Lastname" Type="varchar" Nullable="false" MaxLength="11" />
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Subject" Type="varchar" Nullable="false" MaxLength="11" />
+    <Property Name="Message" Type="text" Nullable="false" />
+    <Property Name="Created_Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="orders">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="product_id" Type="int" Nullable="false" />
+    <Property Name="customer_name" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="quantity" Type="int" Nullable="false" />
+    <Property Name="total_amount" Type="int" Nullable="false" />
+    <Property Name="order_date" Type="datetime" Nullable="false" />
+    <Property Name="status" Type="varchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="quantity" Type="int" Nullable="false" />
+    <Property Name="price" Type="int" Nullable="false" />
+    <Property Name="description" Type="text" Nullable="false" />
+    <Property Name="subcat_name" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="img_loc" Type="varchar" Nullable="false" MaxLength="200" />
+    <Property Name="created_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sub_category">
+    <Key>
+      <PropertyRef Name="subcat_id" />
+    </Key>
+    <Property Name="subcat_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="subcat_name" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="created_date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Contact_Number" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Gender" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Address" Type="text" Nullable="false" />
+    <Property Name="Date_of_birth" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Username" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="user_type" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="Created_Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="views">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Product_Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Product_id" Type="int" />
+    <Property Name="Hits" Type="int" />
+  </EntityType>
+  <Association Name="FK_orders_products">
+    <End Role="products" Type="letsshopModel.Store.products" Multiplicity="1" />
+    <End Role="orders" Type="letsshopModel.Store.orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="products">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="spAddOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="product_id" Type="int" Mode="In" />
+    <Parameter Name="customer_name" Type="varchar" Mode="In" />
+    <Parameter Name="quantity" Type="int" Mode="In" />
+    <Parameter Name="total_amount" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spADDProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="quantity" Type="int" Mode="In" />
+    <Parameter Name="price" Type="int" Mode="In" />
+    <Parameter Name="description" Type="text" Mode="In" />
+    <Parameter Name="subcat_name" Type="varchar" Mode="In" />
+    <Parameter Name="img_loc" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spApprove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDeleteuser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="splogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Username" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="spOrderemove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spremoveProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sptotal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Name" Type="varchar" Mode="In" />
+    <Parameter Name="Email" Type="varchar" Mode="In" />
+    <Parameter Name="Contact_Number" Type="varchar" Mode="In" />
+    <Parameter Name="Gender" Type="varchar" Mode="In" />
+    <Parameter Name="Address" Type="text" Mode="In" />
+    <Parameter Name="Date_of_birth" Type="varchar" Mode="In" />
+    <Parameter Name="Username" Type="varchar" Mode="In" />
+    <Parameter Name="Password" Type="varchar" Mode="In" />
+    <Parameter Name="user_type" Type="varchar" Mode="In" />
+  </Function>
+</Schema>
