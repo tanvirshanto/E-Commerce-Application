@@ -7,3 +7,18 @@ Language Used – C#. Technologies used:
                              2. Asp.Net MVC 4.0
                              3. Entity Framework
                              4. MS SQL Server 2008 R2
+
+
+  Scrrenshots:
+  
+     Homepage:         
+![letshop1](https://user-images.githubusercontent.com/30244320/29000760-b4235f6e-7a97-11e7-9842-59a1dfc36e9d.JPG)
+
+user Account:
+![letsop2](https://user-images.githubusercontent.com/30244320/29000761-b857fafe-7a97-11e7-97e3-0ffad764036f.JPG)
+
+category:
+![letsshop3](https://user-images.githubusercontent.com/30244320/29000762-bb8807a0-7a97-11e7-8224-642883a4e697.JPG)
+Admin Panel:
+
+![letsshop4](https://user-images.githubusercontent.com/30244320/29000763-bf552c96-7a97-11e7-940e-3050886528fb.JPG)
