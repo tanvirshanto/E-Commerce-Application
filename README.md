@@ -14,6 +14,10 @@ Language Used – C#. Technologies used:
      Homepage:         
 ![letshop1](https://user-images.githubusercontent.com/30244320/29000760-b4235f6e-7a97-11e7-9842-59a1dfc36e9d.JPG)
 
+![6](https://user-images.githubusercontent.com/30244320/29001741-b3e9b418-7ab4-11e7-902a-82380f2c45df.jpg)
+
+![letsshop3](https://user-images.githubusercontent.com/30244320/29001742-b72c5ad6-7ab4-11e7-964e-6f38bf07264d.JPG)
+
 user Account:
 ![letsop2](https://user-images.githubusercontent.com/30244320/29000761-b857fafe-7a97-11e7-97e3-0ffad764036f.JPG)
 
