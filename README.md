@@ -21,4 +21,5 @@ category:
 ![letsshop3](https://user-images.githubusercontent.com/30244320/29000762-bb8807a0-7a97-11e7-8224-642883a4e697.JPG)
 Admin Panel:
 
-![letsshop4](https://user-images.githubusercontent.com/30244320/29000763-bf552c96-7a97-11e7-940e-3050886528fb.JPG)
+![letsshop4](https://user-images.githubusercontent.com/30244320/29001671-b6486a8a-7ab2-11e7-9e0c-06c776ba547d.JPG)
+
