@@ -28,7 +28,7 @@ namespace lets.Controllers
         public ActionResult orderlist()
         {
 
-            ViewBag.orderlist = db.orders.ToList();
+           ViewBag.orderlist = db.orders.ToList();
             return View();
         }
 

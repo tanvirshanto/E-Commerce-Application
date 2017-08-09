@@ -122,6 +122,7 @@ namespace lets.Controllers
 
 
         [HttpGet]
+        
         public ActionResult category(string id)
         {
 
@@ -131,6 +132,27 @@ namespace lets.Controllers
             mymodel.PostBasic = db.products.ToList().Where(x => x.subcat_name == id);
 
             return View(mymodel);
+
+        }
+        ////search
+
+       [HttpPost]
+        [ActionName("category")]
+        public ActionResult category_search(FormCollection form)
+        {
+            string a = form["search"];
+            
+           
+            dynamic mymodel = new ExpandoObject();
+            var persons = from p in db.products select p;
+            if (!string.IsNullOrWhiteSpace(a))
+            {
+
+               
+                mymodel.PostBasic = persons.Where(r=>r.subcat_name.Contains(a));
+                return View(mymodel);
+            }
+            return RedirectToAction("Index");
 
         }
 
@@ -399,6 +421,7 @@ namespace lets.Controllers
             if (Session["username"] != null)
             {
                 ViewBag.orderlist = db.orders.Where(x => x.customer_name == name).ToList();
+               // List<order> od = db.orders.Where(x => x.customer_name == name).ToList();
 
                 return View();
             
@@ -433,6 +456,13 @@ namespace lets.Controllers
             Session.Remove("count");
             return RedirectToAction("Index");
         }
+
+
+     
+       
+
+
+
 
     }
 
