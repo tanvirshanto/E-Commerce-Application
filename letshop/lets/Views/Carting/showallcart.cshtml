@@ -1,0 +1,810 @@
+﻿@{
+    ViewBag.Title = "showallcart";
+}
+@using lets.Models
+@{
+    ViewBag.Title = "cart";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Obaju e-commerce template">
+    <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
+    <meta name="keywords" content="">
+
+    <title>
+        Obaju : e-commerce template
+    </title>
+
+    <meta name="keywords" content="">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
+
+    <link href="../../Content/css/animate.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/owl.carousel.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/owl.theme.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/owl.transitions.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/style.blue.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/css/style.default.css" rel="stylesheet" type="text/css" />
+    <script src="../../Script/bootstrap-hover-dropdown.js" type="text/javascript"></script>
+    <script src="../../Script/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../../Script/front.js" type="text/javascript"></script>
+    <script src="../../Script/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="../../Script/jquery.cookie.js" type="text/javascript"></script>
+    <script src="../../Script/jquery.flexslider.js" type="text/javascript"></script>
+    <script src="../../Script/jquery.flexslider.min.js" type="text/javascript"></script>
+    <script src="../../Script/main.js" type="text/javascript"></script>
+    <script src="../../Script/modernizr.js" type="text/javascript"></script>
+    <script src="../../Script/owl.carousel.min.js" type="text/javascript"></script>
+    <script src="../../Script/respond.min.js" type="text/javascript"></script>
+    <script src="../../Script/waypoints.min.js" type="text/javascript"></script>
+
+
+
+</head>
+
+<body>
+    <!-- *** TOPBAR ***
+ _________________________________________________________ -->
+    <div id="top">
+        <div class="container">
+            <div class="col-md-6 offer" data-animate="fadeInDown">
+                <a href="#" class="btn btn-success btn-sm" data-animate-hover="shake">Offer of the day</a>  <a href="#">Get flat 35% off on orders over $50!</a>
+            </div>
+            <div class="col-md-6" data-animate="fadeInDown">
+                <ul class="menu">
+                    <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                    </li>
+                    <li><a href="register.html">Register</a>
+                    </li>
+                    <li><a href="contact.html">Contact</a>
+                    </li>
+                    <li><a href="#">Recently viewed</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="Login">Customer login</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="customer-orders.html" method="post">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="email-modal" placeholder="email">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="password-modal" placeholder="password">
+                            </div>
+
+                            <p class="text-center">
+                                <button class="btn btn-primary"><i class="fa fa-sign-in"></i> Log in</button>
+                            </p>
+
+                        </form>
+
+                        <p class="text-center text-muted">Not registered yet?</p>
+                        <p class="text-center text-muted"><a href="register.html"><strong>Register now</strong></a>! It is easy and done in 1&nbsp;minute and gives you access to special discounts and much more!</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- *** TOP BAR END *** -->
+
+    <!-- *** NAVBAR ***
+ _________________________________________________________ -->
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand home" href="index.html" data-animate-hover="bounce">
+                    <img src="../../Content/img/logo.png" alt="Obaju logo" class="hidden-xs">
+                    <img src="img/logo-small.png" alt="Obaju logo" class="visible-xs"><span class="sr-only">Lets Shop</span> </a>
+                <div class="navbar-buttons">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
+                        <span class="sr-only">Toggle navigation</span> <i class="fa fa-align-justify"></i>
+                    </button>
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">
+                        <span class="sr-only">Toggle search</span> <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="active"><a href="/Home/Index">Home</a> </li>
+                    <li class="dropdown yamm-fw"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                        data-hover="dropdown" data-delay="200">Furniture <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="yamm-content">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h5>
+                                                Bedroom</h5>
+                                            <ul>
+                                                <!-- <li><a href="/Home/category?u=DoubleBed">Double Bed</a> </li>!-->
+                                                <li>
+                                                    @Html.ActionLink("Double Bed", "category", new { id = "DoubleBed", u = "Double Bed" })
+                                                </li>
+                                                <li>@Html.ActionLink("Single Bed", "category", new { id = "SingleBed", u = "Single Bed" })
+                                                </li>
+                                                <li>@Html.ActionLink("Cupboard", "category", new { id = "Cupboard", u = "Cupboard" })
+                                                </li>
+                                                <li>@Html.ActionLink("Dressing Table", "category", new { id = "DressingTable", u = "Dressing Table" })
+                                                </li>
+                                                <li>@Html.ActionLink("Wardrobe", "category", new { id = "Wardrobe", u = "Wardrobe" })
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <h5>
+                                                Diningroom</h5>
+                                            <ul>
+                                                <li>@Html.ActionLink("Dining Set", "category", new { id = "Dining Set", u = "Dining Set" })</li>
+                                                <li>@Html.ActionLink("Chair", "category", new { id = "Chair", u = "Chair" })</li>
+                                                <li>@Html.ActionLink("ShowCase", "category", new { id = "ShowCase", u = "ShowCase" })</li>
+                                                <li>@Html.ActionLink("Dinner Wagon", "category", new { id = "Dinner Wagon", u = "Dinner Wagon" })
+                                                </li>
+                                                <li>@Html.ActionLink("Dinner Table", "category", new { id = "Dinner Table", u = "Dinner Table" })
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <h5>
+                                                Office</h5>
+                                            <ul>
+                                                <li>@Html.ActionLink("Office Chair", "category", new { id = "Office Chair", u = "Office Chair" })
+                                                </li>
+                                                <li>@Html.ActionLink("Table", "category", new { id = "Table", u = "Table" })
+                                                </li>
+                                                <li>@Html.ActionLink("Drawer", "category", new { id = "Drawer", u = "Drawer" })
+                                                </li>
+                                                <li>@Html.ActionLink("Shelf", "category", new { id = "Shelf", u = "Shelf" })
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <h5>
+                                                Living Room</h5>
+                                            <ul>
+                                                <li>@Html.ActionLink("Center Table", "category", new { id = "Center Table", u = "Center Table" })
+                                                </li>
+                                               
+                                                <li>@Html.ActionLink("Sofa", "category", new { id = "Sofa", u = "Sofa" })
+                                                </li>
+                                                
+                                                <li>@Html.ActionLink("Tv Cabinet", "category", new { id = "Tv Cabinet", u = "Tv Cabinet" })
+                                                </li>
+                                            </ul>
+                                            <h5>
+                                                Miscellaneous</h5>
+                                            <ul>
+                                              
+                                                <li>@Html.ActionLink("Kitchen Cabinet", "category", new { id = "Kitchen Cabinet", u = "Kitchen Cabinet" })
+                                                </li>
+                                               
+                                                <li>@Html.ActionLink("Children bed", "category", new { id = "Children bed", u = "Children bed" })
+                                                </li>
+                                               
+                                                <li>@Html.ActionLink("Others", "category", new { id = "Others", u = "Others" })
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.yamm-content -->
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown yamm-fw"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                        data-hover="dropdown" data-delay="200">Fashion<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="yamm-content">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h5>
+                                                Men</h5>
+                                            <ul>
+                                                
+                                                 <li>@Html.ActionLink("Men T-shirts", "category", new { id = "Men T-shirts", u = "Men T-shirts" })
+                                                </li>
+                                              
+                                                 <li>@Html.ActionLink("Men Shirts", "category", new { id = "Men Shirts", u = "Men Shirts" })
+                                                </li>
+                                                
+                                                 <li>@Html.ActionLink("Men Pants", "category", new { id = "Men Pants", u = "Men Pants" })
+                                                </li>
+                                                
+                                                 <li>@Html.ActionLink("Watches", "category", new { id = "Watches", u = "Watches" })
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <h5>
+                                                Women</h5>
+                                            <ul>
+                                               
+                                                <li>@Html.ActionLink("Salwar Kameez", "category", new { id = "Salwar Kameez", u = "Salwar Kameez" })
+                                                </li>
+                                               
+                                                <li>@Html.ActionLink("Saree", "category", new { id = "Saree", u = "Saree" })
+                                                </li>
+                                         
+                                                <li>@Html.ActionLink("Women Shirts", "category", new { id = "Women Shirts", u = "Women Shirts" })
+                                                </li>
+                                             
+                                                <li>@Html.ActionLink("Women Pants", "category", new { id = "Women Pants", u = "Women Pants" })
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <h5>
+                                                Shoes</h5>
+                                            <ul>
+                                                
+                                                <li>@Html.ActionLink("Men Shoes", "category", new { id = "Men Shoes", u = "Men Shoes" })
+                                                </li>
+                                              
+                                                <li>@Html.ActionLink("Men Sandals", "category", new { id = "Men Sandals", u = "Men Sandals" })
+                                                </li>
+                                                
+                                                <li>@Html.ActionLink("Women Sandals", "category", new { id = "SarWomen Sandalsee", u = "Women Sandals" })
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="banner">
+                                                <a href="#">
+                                                    <img src="img/banner.jpg" class="img img-responsive" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="banner">
+                                                <a href="#">
+                                                    <img src="img/banner2.jpg" class="img img-responsive" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.yamm-content -->
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown yamm-fw"><a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                        data-hover="dropdown" data-delay="200">Home Decor<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="yamm-content">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h5>
+                                                Decoration</h5>
+                                            <ul>
+                                               
+                                                 <li>@Html.ActionLink("Curtain", "category", new { id = "Curtain", u = "Curtain" })
+                                                </li>
+                                                
+                                                 <li>@Html.ActionLink("Show Pieces", "category", new { id = "Show Pieces", u = "Show Pieces" })
+                                                </li>
+                                                
+                                                 <li>@Html.ActionLink("Home Lighting", "category", new { id = "Home Lighting", u = "Home Lighting" })
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <h5>
+                                                Electronics</h5>
+                                            <ul>
+                                                
+                                                 <li>@Html.ActionLink("Refrigerator", "category", new { id = "Refrigerator", u = "Refrigerator" })
+                                                </li>
+                                               
+                                                 <li>@Html.ActionLink("Television", "category", new { id = "Television", u = "Television" })
+                                                </li>
+                                               
+                                                 <li>@Html.ActionLink("Washing Machine", "category", new { id = "Washing Machine", u = "Washing Machine" })
+                                                </li>
+                                                
+                                                 <li>@Html.ActionLink("Air Conditioner", "category", new { id = "Air Conditioner", u = "Air Conditioner" })
+                                                
+                                                 <li>@Html.ActionLink("Others", "category", new { id = "Others", u = "Others" })
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.yamm-content -->
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+            <div class="navbar-buttons">
+                <div class="navbar-collapse collapse right" id="basket-overview">
+                    <a href="/Home/showallcart" class="btn btn-primary navbar-btn"><i class="fa fa-shopping-cart">
+                    </i><span class="hidden-sm">@Session["count"]</span></a>
+                </div>
+                <!--/.nav-collapse -->
+                <div class="navbar-collapse collapse right" id="search-not-mobile">
+                    <button type="button" class="btn navbar-btn btn-primary" data-toggle="collapse" data-target="#search">
+                        <span class="sr-only">Toggle search</span> <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="collapse clearfix" id="search">
+                <form class="navbar-form" role="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+                </form>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#navbar -->
+    <!-- *** NAVBAR END *** -->
+
+    <div id="all">
+
+        <div id="content">
+            <div class="container">
+
+                <div class="col-md-12">
+                    <ul class="breadcrumb">
+                        <li><a href="#">Home</a>
+                        </li>
+                        <li>Shopping cart</li>
+                    </ul>
+                </div>
+
+                <div class="col-md-9" id="basket">
+
+                    <div class="box">
+
+                        
+
+                            <h1>Shopping cart</h1>
+                            <p class="text-muted">You currently have @Session["count"] item(s) in your cart.</p>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2">Product</th>
+                                            <th>Quantity</th>
+                                            <th>Unit price</th>
+                                            <th>Discount</th>
+                                            <th colspan="2">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @{
+                                       double grandTotal=0;
+            }  
+                                    @foreach (var item in (List<product>)Session["cart"])
+                                    {
+
+                                        double subTotal = Convert.ToDouble(item.quantity) * Convert.ToDouble(item.price);
+                                        grandTotal += subTotal;
+                                        <tr>
+                                            <td>
+                                                <a href="#">
+                                                    <img src="@Url.Content("~/Content/img/" + item.subcat_name + "/" + System.IO.Path.GetFileName(item.img_loc))" alt="" class="img-responsive" style="width:40px;height:60px;" >
+                                                </a>
+                                            </td>
+                                            <td><a href="#">@item.description</a>
+                                            </td>
+                                            <td>
+                                                @using (Html.BeginForm("update", "Home")) 
+                                               { 
+                                                 <input type="number" value="@item.quantity" name="quantity" />
+                                                   <input type="hidden" value="@item.product_id" name="product_id" />
+                                               
+                                                  <input type="image" src="../../Content/img/images.png"/ style="width:20px;height:20px">
+                                               
+                                               }
+                                            </td>
+                                            <td>Tk/=@item.price</td>
+                                            <td>0.00</td>
+                                            <td name="total">Tk/=@subTotal </td>
+                                            <td> @Html.ActionLink("Remove", "remove_cart", new { id = @item.product_id }, new { @class = "fa fa-trash-o" })
+                                            </td>
+                                        </tr>
+                                    }
+                                     
+                                    </tbody>
+                                    <tfoot>
+                                         <tr>
+                                                <th colspan="5">Total</th>
+                                                <th>@grandTotal</th>
+                                            </tr>
+                                       
+                                    </tfoot>
+                                </table>
+
+                            </div>
+                            <!-- /.table-responsive -->
+
+                            <div class="box-footer">
+                                <div class="pull-left">
+                                  
+                                    @Html.ActionLink("Continue shopping", "Index", new { id = "" }, new { @class = "btn btn-primary" })
+                                </div>
+                                <div class="pull-right">
+                                    <button class="btn btn-default"><i class="fa fa-refresh"></i> Update basket</button>
+                                     @Html.ActionLink("Proceed to checkout", "checkout", new { id = "" }, new { @class = "btn btn-primary" })
+                                </div>
+                            </div>
+
+                       
+                    </div>
+                    <!-- /.box -->
+
+
+                    <div class="row same-height-row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="box same-height">
+                                <h3>You may also like these products</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 col-sm-6">
+                            <div class="product same-height">
+                                <div class="flip-container">
+                                    <div class="flipper">
+                                        <div class="front">
+                                            <a href="detail.html">
+                                                <img src="img/product2.jpg" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="back">
+                                            <a href="detail.html">
+                                                <img src="img/product2_2.jpg" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="detail.html" class="invisible">
+                                    <img src="img/product2.jpg" alt="" class="img-responsive">
+                                </a>
+                                <div class="text">
+                                    <h3>Fur coat</h3>
+                                    <p class="price">$143</p>
+                                </div>
+                            </div>
+                            <!-- /.product -->
+                        </div>
+
+                        <div class="col-md-3 col-sm-6">
+                            <div class="product same-height">
+                                <div class="flip-container">
+                                    <div class="flipper">
+                                        <div class="front">
+                                            <a href="detail.html">
+                                                <img src="img/product1.jpg" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="back">
+                                            <a href="detail.html">
+                                                <img src="img/product1_2.jpg" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="detail.html" class="invisible">
+                                    <img src="img/product1.jpg" alt="" class="img-responsive">
+                                </a>
+                                <div class="text">
+                                    <h3>Fur coat</h3>
+                                    <p class="price">$143</p>
+                                </div>
+                            </div>
+                            <!-- /.product -->
+                        </div>
+
+
+                        <div class="col-md-3 col-sm-6">
+                            <div class="product same-height">
+                                <div class="flip-container">
+                                    <div class="flipper">
+                                        <div class="front">
+                                            <a href="detail.html">
+                                                <img src="img/product3.jpg" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="back">
+                                            <a href="detail.html">
+                                                <img src="img/product3_2.jpg" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="detail.html" class="invisible">
+                                    <img src="img/product3.jpg" alt="" class="img-responsive">
+                                </a>
+                                <div class="text">
+                                    <h3>Fur coat</h3>
+                                    <p class="price">$143</p>
+
+                                </div>
+                            </div>
+                            <!-- /.product -->
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <!-- /.col-md-9 -->
+
+                <div class="col-md-3">
+                    <div class="box" id="order-summary">
+                        <div class="box-header">
+                            <h3>Order summary</h3>
+                        </div>
+                        <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td>Order subtotal</td>
+                                        <th>Tk=42500</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Shipping and handling</td>
+                                        <th>10.00</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Tax</td>
+                                        <th>0.00</th>
+                                    </tr>
+                                    <tr class="total">
+                                        <td>Total</td>
+                                        <th>Tk=42500</th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+
+                    <div class="box">
+                        <div class="box-header">
+                            <h4>Coupon code</h4>
+                        </div>
+                        <p class="text-muted">If you have a coupon code, please enter it in the box below.</p>
+                        <form>
+                            <div class="input-group">
+
+                                <input type="text" class="form-control">
+
+                                <span class="input-group-btn">
+
+					<button class="btn btn-primary" type="button"><i class="fa fa-gift"></i></button>
+
+				    </span>
+                            </div>
+                            <!-- /input-group -->
+                        </form>
+                    </div>
+
+                </div>
+                <!-- /.col-md-3 -->
+
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /#content -->
+
+        <!-- *** FOOTER ***
+ _________________________________________________________ -->
+        <div id="footer" data-animate="fadeInUp">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <h4>Pages</h4>
+
+                        <ul>
+                            <li><a href="text.html">About us</a>
+                            </li>
+                            <li><a href="text.html">Terms and conditions</a>
+                            </li>
+                            <li><a href="faq.html">FAQ</a>
+                            </li>
+                            <li><a href="contact.html">Contact us</a>
+                            </li>
+                        </ul>
+
+                        <hr>
+
+                        <h4>User section</h4>
+
+                        <ul>
+                            <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                            </li>
+                            <li><a href="register.html">Regiter</a>
+                            </li>
+                        </ul>
+
+                        <hr class="hidden-md hidden-lg hidden-sm">
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+                    <div class="col-md-3 col-sm-6">
+
+                        <h4>Top categories</h4>
+
+                        <h5>Men</h5>
+
+                        <ul>
+                            <li><a href="category.html">T-shirts</a>
+                            </li>
+                            <li><a href="category.html">Shirts</a>
+                            </li>
+                            <li><a href="category.html">Accessories</a>
+                            </li>
+                        </ul>
+
+                        <h5>Ladies</h5>
+                        <ul>
+                            <li><a href="category.html">T-shirts</a>
+                            </li>
+                            <li><a href="category.html">Skirts</a>
+                            </li>
+                            <li><a href="category.html">Pants</a>
+                            </li>
+                            <li><a href="category.html">Accessories</a>
+                            </li>
+                        </ul>
+
+                        <hr class="hidden-md hidden-lg">
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+                    <div class="col-md-3 col-sm-6">
+
+                        <h4>Where to find us</h4>
+
+                        <p><strong>Obaju Ltd.</strong>
+                            <br>13/25 New Avenue
+                            <br>New Heaven
+                            <br>45Y 73J
+                            <br>England
+                            <br>
+                            <strong>Great Britain</strong>
+                        </p>
+
+                        <a href="contact.html">Go to contact page</a>
+
+                        <hr class="hidden-md hidden-lg">
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+
+
+                    <div class="col-md-3 col-sm-6">
+
+                        <h4>Get the news</h4>
+
+                        <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+
+                        <form>
+                            <div class="input-group">
+
+                                <input type="text" class="form-control">
+
+                                <span class="input-group-btn">
+
+			    <button class="btn btn-default" type="button">Subscribe!</button>
+
+			</span>
+
+                            </div>
+                            <!-- /input-group -->
+                        </form>
+
+                        <hr>
+
+                        <h4>Stay in touch</h4>
+
+                        <p class="social">
+                            <a href="#" class="facebook external" data-animate-hover="shake"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="twitter external" data-animate-hover="shake"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="instagram external" data-animate-hover="shake"><i class="fa fa-instagram"></i></a>
+                            <a href="#" class="gplus external" data-animate-hover="shake"><i class="fa fa-google-plus"></i></a>
+                            <a href="#" class="email external" data-animate-hover="shake"><i class="fa fa-envelope"></i></a>
+                        </p>
+
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /#footer -->
+
+        <!-- *** FOOTER END *** -->
+
+
+
+
+        <!-- *** COPYRIGHT ***
+ _________________________________________________________ -->
+        <div id="copyright">
+            <div class="container">
+                <div class="col-md-6">
+                    <p class="pull-left">© 2015 Your name goes here.</p>
+
+                </div>
+                <div class="col-md-6">
+                    <p class="pull-right">Template by <a href="https://bootstrapious.com/e-commerce-templates">Bootstrapious.com</a>
+                         <!-- Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  -->
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- *** COPYRIGHT END *** -->
+
+
+
+    </div>
+    <!-- /#all -->
+
+
+    
+
+    <!-- *** SCRIPTS TO INCLUDE ***
+ _________________________________________________________ -->
+ <script src="../../Script/bootstrap-hover-dropdown.js" type="text/javascript"></script>
+    <script src="../../Script/bootstrap.min.js" type="text/javascript"></script>
+    <script src="../../Script/front.js" type="text/javascript"></script>
+    <script src="../../Script/jquery-1.11.0.min.js" type="text/javascript"></script>
+    <script src="../../Script/jquery.cookie.js" type="text/javascript"></script>
+    <script src="../../Script/jquery.flexslider.js" type="text/javascript"></script>
+    <script src="../../Script/jquery.flexslider.min.js" type="text/javascript"></script>
+    <script src="../../Script/main.js" type="text/javascript"></script>
+    <script src="../../Script/modernizr.js" type="text/javascript"></script>
+    <script src="../../Script/owl.carousel.min.js" type="text/javascript"></script>
+    <script src="../../Script/respond.min.js" type="text/javascript"></script>
+    <script src="../../Script/waypoints.min.js" type="text/javascript"></script>
+
+
+</body>
+
+</html>
+
